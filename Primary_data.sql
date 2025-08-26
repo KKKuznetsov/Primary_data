@@ -32,10 +32,10 @@ CREATE TABLE IF NOT EXISTS raw.primary_data (
     amount_type_3    INTEGER        NOT NULL DEFAULT 0,
     amount_type_4    INTEGER        NOT NULL DEFAULT 0,
     amount_type_5    INTEGER        NOT NULL DEFAULT 0,
-    market           VARCHAR
-    report_provider  VARCHAR        NOT NULL;
-    report_provider_name VARCHAR    NOT NULL;
-    client_type      client_type    NOT NULL;
+    market           VARCHAR,
+    report_provider  VARCHAR        NOT NULL,
+    report_provider_name VARCHAR    NOT NULL,
+    client_type      TEXT    NOT NULL
 );
 
 -- 3) Индексы: частые фильтры/соединения
@@ -48,6 +48,7 @@ CREATE INDEX IF NOT EXISTS idx_primary_data_filename   ON raw.primary_data (file
 -- Опционально: составной индекс, если часто ищете по связке поставщик+период
 CREATE INDEX IF NOT EXISTS idx_primary_data_supplier_period
     ON raw.primary_data (supplier_id, period);
+
 
 
 
